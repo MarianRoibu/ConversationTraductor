@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { translateText, detectLanguage } from '../functions/translationFunctions';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import speak from 'speak-tts';
 
 function TranslationInput() {
     const [inputText, setInputText] = useState('');
@@ -38,6 +38,14 @@ function TranslationInput() {
         recognition.lang = langCode;
         recognition.start();
       };
+
+      const handleTextToSpeech = () => {
+        const utterance = new SpeechSynthesisUtterance(translatedText);
+        utterance.lang = targetLang;
+        utterance.pitch = 1;
+        utterance.rate = 1;
+        window.speechSynthesis.speak(utterance);
+      };
   
     return (
       <div>
@@ -67,6 +75,7 @@ function TranslationInput() {
           <button type="button" onClick={handleSpeechToText}>Speak</button>
         </form>
         {translatedText && <div>Translated text: {translatedText}</div>}
+        <button type="button" onClick={handleTextToSpeech}>Speak translation</button>
       </div>
     );
   }
