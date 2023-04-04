@@ -1,4 +1,19 @@
-import styled from "styled-components"
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+export const StyledNavLink = styled(NavLink)`
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.active {
+    color: #94c7fd;
+  }
+`;
 
 export const NavbarInfo = styled.nav`
   display: flex;

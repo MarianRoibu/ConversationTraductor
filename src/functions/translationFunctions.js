@@ -16,3 +16,4 @@ export const detectLanguage = async (apiKey, text) => {
   );
   return response.data.translations[0].detected_source_language;
 };
+
