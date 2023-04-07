@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { translateText, detectLanguage, handleSpeechToText,handleTextToSpeech } from '../functions/translationFunctions';
 import { Input, Form, Label, Select, Button, TranslationInputContainer, SpeakButton } from '../styles/TranslateFormStyle';
+import ThemeToggleButton from '../components/darkModeButton';
+import { createGlobalStyle } from 'styled-components';
 
 
 function TranslationInput() {
@@ -36,9 +38,13 @@ function TranslationInput() {
     setTranslatedText(translatedText);
   };
 
+  const recognition = new window.webkitSpeechRecognition();
+
+
   const handleSpeechToText = (speakActive, setSpeakActive) => {
     if (speakActive) {
       // Stop speech recognition
+      recognition.stop();
       setSpeakActive(false);
     } else {
       // Start speech recognition
@@ -49,11 +55,19 @@ function TranslationInput() {
         setInputText(event.results[0][0].transcript);
       };
     
+      recognition.onend = () => {
+        setSpeakActive(false);
+      };
+    
+      recognition.onerror = () => {
+        setSpeakActive(false);
+      };
+    
       recognition.lang = langCode;
       recognition.start();
-      setSpeakActive(false);
+      setSpeakActive(true);
     }
-  }
+  };
 
   const handleTextToSpeech = () => {
     const utterance = new SpeechSynthesisUtterance(translatedText);
@@ -64,8 +78,23 @@ function TranslationInput() {
   };
 
 
+  const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${props => props.theme.bg};
+    color: ${props => props.theme.text};
+    font-family: sans-serif;
+  }
+`;
+const [currentTheme, setCurrentTheme] = useState('light');
+
+const toggleTheme = () => {
+  setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
+};
+
+
 
   return (
+  
     <TranslationInputContainer>
       <Form onSubmit={handleFormSubmit}>
         <Label>
@@ -107,8 +136,8 @@ function TranslationInput() {
         <Button type="submit" primary>Translate</Button>
 
         <SpeakButton active={speakActive} onClick={() => handleSpeechToText(speakActive, setSpeakActive)}>
-          Speak
-        </SpeakButton>
+  {speakActive ? "Speak (On)" : "Speak (Off)"}
+</SpeakButton>
 
       </Form>
       {translatedText && <div>Translated text: {translatedText}</div>}
@@ -116,6 +145,7 @@ function TranslationInput() {
        Hear
       </Button>
     </TranslationInputContainer>
+   
   );
 }
 

@@ -11,7 +11,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   &.active {
-    color: #94c7fd;
+    color: #cfe0f2;
   }
 `;
 
@@ -19,19 +19,33 @@ export const NavbarInfo = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 3rem;
+  background-color: #878585;
+  color: #fff;
   padding: 0 50px;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease-in-out;
 
   div {
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       color: #0077ff;
     }
+
+    svg {
+      margin-right: 10px;
+    }
   }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #514e4e54;
+  }
+  
 `;
