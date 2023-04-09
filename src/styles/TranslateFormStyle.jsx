@@ -36,6 +36,46 @@ export const TranslationInputContainer = styled.div`
   }
 `;
 
+export const TranslatedTextContainer = styled.form`
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+background-color: #fff;
+width: 100%;
+max-width: 500px;
+
+`;
+
+export const TranslatedText = styled.span`
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+background-color: #fff;
+width: 100%;
+max-width: 500px;
+`;
+
+
+export const TextArea = styled.textarea`
+width: 25%;
+margin-left: 38%;
+font-size: 1rem;
+padding: 0.5rem;
+border: 1px solid #ccc;
+border-radius: 0.5rem;
+margin-bottom: 1rem;
+max-height: 300px;
+height: 100px;
+@media (prefers-color-scheme: dark) {
+  background-color: #787878;
+}
+overflow-y: auto;
+`;
+
+
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

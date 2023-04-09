@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { translateText, detectLanguage, handleSpeechToText,handleTextToSpeech } from '../functions/translationFunctions';
-import { Input, Form, Label, Select, Button, TranslationInputContainer, SpeakButton } from '../styles/TranslateFormStyle';
+import { Input, Form, Label, Select, Button, TranslationInputContainer, TranslatedText, SpeakButton, TextArea, TranslatedTextContainer } from '../styles/TranslateFormStyle';
 import ThemeToggleButton from '../components/darkModeButton';
 import { createGlobalStyle } from 'styled-components';
 
@@ -11,6 +11,8 @@ function TranslationInput() {
   const [sourceLang, setSourceLang] = useState('');
   const [targetLang, setTargetLang] = useState('es');
   const [speakActive, setSpeakActive] = useState(false);
+  const [isSourceToTarget, setIsSourceToTarget] = useState(true); // added state variable to toggle language direction
+
 
   const handleInputChange = (event) => {
     setInputText(event.target.value);
@@ -78,19 +80,10 @@ function TranslationInput() {
   };
 
 
-  const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${props => props.theme.bg};
-    color: ${props => props.theme.text};
-    font-family: sans-serif;
-  }
-`;
-const [currentTheme, setCurrentTheme] = useState('light');
-
-const toggleTheme = () => {
-  setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
-};
-
+  const handleSwitchLanguages = () => {
+    setSourceLang(targetLang);
+    setTargetLang(sourceLang);
+  };
 
 
   return (
@@ -117,6 +110,9 @@ const toggleTheme = () => {
 
           </Select>
         </Label>
+        <Button type="button" onClick={handleSwitchLanguages}>
+          Switch Languages
+        </Button>
         <Label>
           Select target language:
           <Select value={targetLang} onChange={handleTargetLangChange}>
@@ -136,11 +132,19 @@ const toggleTheme = () => {
         <Button type="submit" primary>Translate</Button>
 
         <SpeakButton active={speakActive} onClick={() => handleSpeechToText(speakActive, setSpeakActive)}>
-  {speakActive ? "Speak (On)" : "Speak (Off)"}
-</SpeakButton>
+        {speakActive ? "Speak (On)" : "Speak (Off)"}
+      </SpeakButton>
 
       </Form>
-      {translatedText && <div>Translated text: {translatedText}</div>}
+      <h2>Translated Text:</h2>
+      <Label>
+        
+      <TextArea
+      value={translatedText}
+      disabled // add the disabled attribute to make the text area read-only
+      onChange={(event) => setTranslatedText(event.target.value)}
+    />
+      </Label>
       <Button type="button" onClick={handleTextToSpeech} >
        Hear
       </Button>

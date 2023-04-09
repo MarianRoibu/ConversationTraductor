@@ -16,6 +16,10 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const NavbarInfo = styled.nav`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,7 +29,8 @@ export const NavbarInfo = styled.nav`
   padding: 0 50px;
   margin-bottom: 2rem;
   transition: all 0.3s ease-in-out;
-
+  z-index: 999;
+  margin-bottom: 5rem;
   div {
     font-size: 18px;
     font-weight: 600;
@@ -34,6 +39,7 @@ export const NavbarInfo = styled.nav`
     display: flex;
     align-items: center;
     transition: all 0.3s ease-in-out;
+    
 
     &:hover {
       color: #0077ff;
@@ -47,5 +53,4 @@ export const NavbarInfo = styled.nav`
   @media (prefers-color-scheme: dark) {
     background-color: #514e4e54;
   }
-  
 `;
