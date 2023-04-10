@@ -4,6 +4,7 @@ import Home from './pages/home';
 import About from './pages/about';
 import Conversation from './pages/conversationPage';
 import { GlobalStyles } from './styles/TranslateFormStyle';
+import TranslationInput from './pages/TranslateForm';
 
 
 
@@ -19,6 +20,8 @@ function App() {
         <Route path="/about" element={<About />} />
         
         <Route path="/Conversation" element={<Conversation />} />
+        
+        <Route path="/TranslateForm" element={<TranslationInput />} />
 
 
       </Routes>

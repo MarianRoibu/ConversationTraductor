@@ -28,7 +28,7 @@ export const TranslationInputContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin: 0;
+  margin-top: 5rem;
   padding: 0;
   height: 100vh;
   @media (prefers-color-scheme: dark) {

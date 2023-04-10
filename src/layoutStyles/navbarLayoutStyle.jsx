@@ -30,7 +30,7 @@ export const NavbarInfo = styled.nav`
   margin-bottom: 2rem;
   transition: all 0.3s ease-in-out;
   z-index: 999;
-  margin-bottom: 5rem;
+  
   div {
     font-size: 18px;
     font-weight: 600;

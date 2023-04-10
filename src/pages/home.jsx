@@ -1,5 +1,6 @@
 import Navbar from "../layout/navbarLayout";
 import TranslationInput from "./TranslateForm";
+import MenuMainPage from "./menuMainPage";
 
 
  function Home() {
@@ -7,7 +8,9 @@ import TranslationInput from "./TranslateForm";
     return(
         <>
         <Navbar />
-        <TranslationInput />
+        {/* <TranslationInput /> */}
+        <MenuMainPage />
+
         </>
     )
 

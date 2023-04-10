@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { translateText, detectLanguage, handleSpeechToText,handleTextToSpeech } from '../functions/translationFunctions';
 import { Input, Form, Label, Select, Button, TranslationInputContainer, TranslatedText, SpeakButton, TextArea, TranslatedTextContainer } from '../styles/TranslateFormStyle';
-import ThemeToggleButton from '../components/darkModeButton';
-import { createGlobalStyle } from 'styled-components';
+import Navbar from '../layout/navbarLayout';
+
 
 
 function TranslationInput() {
@@ -89,6 +89,7 @@ function TranslationInput() {
   return (
   
     <TranslationInputContainer>
+        <Navbar />
       <Form onSubmit={handleFormSubmit}>
         <Label>
           Enter text to translate:

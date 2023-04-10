@@ -43,6 +43,7 @@ const Text = styled.p`
 const Wraper = styled.div`
   color: white;
   position: relative;
+  margin-top: 5rem;
   height: 250rem;
   .spline{
     position: fixed;
