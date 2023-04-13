@@ -8,10 +8,11 @@ import { NavLink } from "react-router-dom";
 const Wraper = styled.div`
   color: white;
   position: relative;
-  height: 130vh;
+  height: 100vh;
   .spline{
-    position: fixed;
-    margin-top: 50rem;
+    position: absolute;
+   
+    margin-top: 0rem;
     top: 0;
     right: 0;
   z-index: 0;
@@ -39,7 +40,7 @@ const LaptopScreenButton = styled.button`
   opacity: 0;
   transform: rotate(5deg);
   top: 12%;
-  left: 24rem;
+  left: 27rem;
   border-radius: 5px;
   border: none;
   outline: none;
@@ -51,9 +52,9 @@ const ButtonWraper = styled.div`
 width: 100%;
 display: flex;
 flex-direction: column;
-top: 10rem;
+top: 12rem;
 /* margin-top: 5rem; */
-margin-bottom: 7rem;
+margin-bottom: 6rem;
 `
 
 
@@ -84,7 +85,7 @@ margin-bottom: 7rem;
         </ButtonsContainer>
       )}
     {/* </div> */}
-    <Spline  onClick={handleButtonClick} scene="https://prod.spline.design/67byttTb9exIse85/scene.splinecode" />
+    <Spline onClick={handleButtonClick} scene="https://prod.spline.design/67byttTb9exIse85/scene.splinecode" />
 
 
         </Wraper>
