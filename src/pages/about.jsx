@@ -69,7 +69,7 @@ function About() {
     <>
       <Navbar />
     <Wraper>
-         <Spline class='spline' scene="https://prod.spline.design/WLpzRmz8cIzDEBFw/scene.splinecode" />
+         <Spline class='spline' scene="https://prod.spline.design/Z20wleNby4QiwqWh/scene.splinecode" />
 
       
       <Container>
