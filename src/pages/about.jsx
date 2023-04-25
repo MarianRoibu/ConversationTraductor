@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../layout/navbarLayout';
 import Spline from '@splinetool/react-spline';
+import { useEffect, useState } from 'react';
 
 const Container = styled.div`
   max-width: 800px;
@@ -63,86 +64,131 @@ margin-top: 5rem;
 margin-bottom: 5rem;
 `
 
+const TextSquare = styled.div`
+  position: fixed;
+  bottom: 60%;
+  left: 40%;
+  border-radius: 1rem;
+  background-color: rgba(167, 167, 167, 0.8);
+  color: white;
+  width: 25rem;
+  height: 11rem;
+  padding: 10px;
+  font-size: 1.2rem;
+  z-index: 2;
+`;
+
+const Triangle = styled.div`
+  position: fixed;
+  bottom: 57%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 20px 15px;
+  border-color: transparent transparent white transparent;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounce 1s ease-in-out infinite;
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -10px);
+    }
+  }
+`;
+
+const Message = styled.div`
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+z-index: 2;
+  p {
+    margin-bottom: 8px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+`;
+
 function About() {
-  return (
-    
-    <>
-      <Navbar />
-    <Wraper>
-         <Spline class='spline' scene="https://prod.spline.design/Z20wleNby4QiwqWh/scene.splinecode" />
 
+  const texts = [
+    "Hello, and welcome to my world!",
+    "Let me tell you a bit about myself.",
+    "I am a highly motivated and passionate full stack developer with experience in HTML, CSS, JavaScript, Node.js, PHP, MySQL, React, and Angular. I am a quick learner with great adaptability and work well both in a team and independently.",
+    "My work experience includes collaborating on various team projects, developing scalable and easy-to-maintain web applications, and contributing to the design and development of applications from scratch.",
+    "I have also gained experience in daily meetings, problem-solving, and error resolution, as well as web application development and teamwork.",
+    "Some notable projects I've worked on include developing an e-commerce web application from scratch, developing a Twitter-like posting application as part of a team, and developing an application that allows for music streaming and uploading.",
+    "My professional objectives are to become a senior full stack developer and work on challenging projects that allow me to continue learning and growing in my career.",
+    "I am currently seeking employment opportunities where I can apply my skills and continue to develop as a professional. I am committed to quality and innovation, and I work with passion and creativity to achieve the best results.",
+    "Thank you so much for taking the time to read through it all. I really appreciate your attention and hope that you found this informative and helpful. If you have any questions or feedback, please don't hesitate to reach out to me. Thanks again, and have a great day!"
+  ];
+
+  const [textIndex, setTextIndex] = useState(0);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.keyCode === 74) { // left arrow
+        setTextIndex((prevIndex) => (prevIndex - 1 + texts.length) % texts.length);
+      } else if (event.keyCode === 76) { // right arrow
+        setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
       
-      <Container>
-        <SectionTitle>Personal Information:</SectionTitle>
-        <TextWraper>
-        <Text>
-        Full Name: Marian Roibu<br/>
-        Email: marianroibu32@gmail.com<br/>
-        Phone:642621445<br/>
-        </Text>
-        </TextWraper>
-        <SectionTitle>About Me</SectionTitle>
-        <TextWraper>
-        <Text>
-        I am a highly motivated and passionate full stack developer with experience in HTML, CSS, JavaScript, Node.js, PHP, MySQL, React, and Angular. I am a quick learner and excited to apply my skills to solve problems and face new challenges. I have great adaptability and work well both in a team and solo.        
-        </Text>
-        </TextWraper>
-        <Subtitle>Work Experience</Subtitle>
-        <TextWraper>
-        <Text>
-        Assembler Institute of Technology (2022-2023)
-Full Stack Developer
+    };
+  }, []);
 
-Collaborated on various team projects, using technologies such as React, Node.js, MySQL, HTML, CSS, and JavaScript to develop scalable and easy-to-maintain web applications.
-Worked on the design and development of an e-commerce application from scratch, including product integration and implementation. Made the design of user interface and user experience (UI/UX).
-Collaborated on the development of a web application for posting like Twitter, using PHP, MySQL, and CSS. Contributed to the design, functionality, and implementation of the database.
-Worked in the creation of a music streaming and uploading application, using technologies such as JavaScript, React, MongoDB, and Redux. Participated in the design of the user interface and user experience (UI/UX), as well as in the development of the backend.
-Participated in daily meetings with the team to discuss project progress and development. Also contributed to problem-solving and error resolution in the code.
-Acquired experience in web application development and teamwork, as well as in problem-solving and learning new technologies in an agile environment.
-Learned and developed skills in the use of Git and GitHub, and participated in code review and version control.
-Participated in programming a RESTful API using Node.js and Express, which allowed me to gain knowledge of software design patterns and architecture.
-Performed integration testing and code debugging to ensure the quality of the developed applications.       
- </Text>
- </TextWraper>
-        <Subtitle>Skills</Subtitle>
-        <TextWraper>
-        <Text>
-        HTML <br/>
-        CSS<br/>
-        JavaScript<br/>
-        PHP<br/>
-        MySQL<br/>
-        Node.js<br/>
-        React<br/>
-        </Text>
-        </TextWraper>
-        <Subtitle>Education:</Subtitle>
-        <TextWraper>
-        <Text>Assembler Institute of Technology (2022-2023) - Full Stack Programming Certification
+  const currentText = texts[textIndex];
 
-Notable Projects:
+  const [showMessage, setShowMessage] = useState(true); 
 
-Developed an e-commerce web application from scratch, using React, CSS, and Styled Components, as part of my final project in the academy. I was responsible for the entire development process, from product integration to database implementation and user interface creation.
+  const handleKeyDown = () => {
+    setShowMessage(false);
+  }
 
-Developed a posting application like Twitter in conjunction with a team of three more programmers, using MySQL, PHP, and CSS, as part of a project in the academy. We were responsible for the design, functionality, and implementation of the database, working together collaboratively.
 
-Developed an application that allows music streaming and uploading, using JavaScript, Styled Components, React, Redux, and MongoDB in conjunction with a team of three more developers, as part of another project in the academy. We focused on making the design modern and user-friendly, working together throughout the entire development process.
-</Text>
-</TextWraper>
-      <Subtitle>Professional Objectives:</Subtitle>
-      <TextWraper>
-      <Text>
-      My long-term goal is to become a senior full stack developer and work on challenging projects that allow me to continue learning and growing in my career. I would like to work in a collaborative environment where I can share my knowledge and learn from other experienced developers. I am looking for an employment opportunity where I can apply my skills and continue to develop as a professional.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowMessage(false);
+    }, 20000);
+    return () => clearTimeout(timer);
+  }, []);
 
-I sincerely appreciate your time in reviewing my resume and hope you have found a good sample of my experience and skills. If you have any questions or would like to discuss more about my profile, please do not hesitate to contact me by email or phone. I will be delighted to speak with you and discuss how I could bring value to your team.
-
-I am looking for opportunities to continue growing as a full stack developer and contribute to challenging projects that allow me to continue learning. My commitment to quality and innovation drives me to always give my best and exceed expectations.
-
-My approach is based on problem-solving and effective collaboration, working with passion and creativity to achieve the best results. I am always willing to learn and explore new technologies to improve my work and help my team achieve their goals.
-      </Text>
-      </TextWraper>
-      </Container>
-    </Wraper>
+  return (
+    <>
+      {showMessage && (
+        <Message>
+          <p>Controls:</p>
+          <ul>
+            <li>W, S, A, D: Move character</li>
+            <li>Arrow keys: Move scenery</li>
+            <li>J, L: Move text</li>
+            <li>Space: Jump</li>
+          </ul>
+        </Message>
+      )}
+      <Navbar />
+      <Wraper>
+        <TextSquare>{currentText}</TextSquare>
+        <Triangle />
+        <Spline class="spline" scene="https://prod.spline.design/Z20wleNby4QiwqWh/scene.splinecode" />
+      </Wraper>
     </>
   );
 }

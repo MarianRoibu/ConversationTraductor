@@ -125,6 +125,8 @@ margin-bottom: 6rem;
 
  function MenuMainPage() {
     const [showButtons, setShowButtons] = useState(false);
+    const [showElement, setShowElement] = useState(false);
+
 
     const handleButtonClick = () => {
       setShowButtons(true);
@@ -134,7 +136,8 @@ margin-bottom: 6rem;
 
         <Wraper>
     {/* <div> */}
-      {/* <LaptopButton onClick={handleButtonClick}>Mostrar botones</LaptopButton> */}
+  
+
       {showButtons && (
         <ButtonsContainer>
           <ButtonWraper1>
